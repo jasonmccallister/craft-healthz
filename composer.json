@@ -1,0 +1,42 @@
+{
+    "name": "jasonmccallister/health-check",
+    "description": "Add health checks to your Craft website, useful when running inside of Docker",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "health check",
+        "health",
+        "docker",
+        "load balancer"
+    ],
+    "support": {
+        "docs": "https://github.com/jasonmccallister/health-check",
+        "issues": "https://github.com/jasonmccallister/health-check/issues"
+    },
+    "license": "MIT",
+    "authors": [{
+        "name": "Jason McCallister",
+        "homepage": "https://mccallister.io",
+        "email": "themccallister@gmail.com"
+    }],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+            "jasonmccallister\\healthcheck\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Health Check",
+        "handle": "health-check",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/jasonmccallister/health-check/master/CHANGELOG.md",
+        "class": "jasonmccallister\\healthcheck\\HealthCheck"
+    }
+}

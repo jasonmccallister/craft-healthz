@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Health Check plugin for Craft CMS
+ *
+ * HealthCheckWidget Widget Settings
+ *
+ * @author    Jason McCallister
+ * @copyright Copyright (c) 2019 Jason McCallister
+ * @link      https://mccallister.io
+ * @package   HealthCheck
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("jasonmccallister\\healthcheck\\assetbundles\\healthcheck\\HealthCheckAsset") %}
+
+{{ forms.textField({
+    label: 'Message',
+    instructions: 'Enter a message here.',
+    id: 'message',
+    name: 'message',
+    value: widget['message']})
+}}
