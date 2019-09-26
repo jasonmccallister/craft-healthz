@@ -10,7 +10,9 @@
 
 namespace mccallister\healthz\controllers;
 
+use Craft;
 use craft\web\Controller;
+use mccallister\healthz\Healthz;
 
 /**
  * Default Controller
@@ -56,7 +58,18 @@ class LivenessController extends Controller
      */
     public function actionIndex()
     {
-        // TODO ping the database if the setting is enabled
+        if (Healthz::$plugin->settings->pingDatabase) {
+            if (Craft::$app->db->isActive) {
+                return $this->asJson([
+                    'message' => 'ok'
+                ]);
+            }
+
+            Craft::$app->getResponse()->setStatusCode(400);
+
+            return $this->asErrorJson('could not establish connection to database');
+        }
+
         return $this->asJson([
             'message' => 'ok'
         ]);

@@ -32,9 +32,9 @@ class Settings extends Model
     // =========================================================================
 
     /**
-     * Some field model attribute
+     * Ping database setting attribute
      *
-     * @var string
+     * @var bool
      */
     public $pingDatabase = 'Ping Database';
 
