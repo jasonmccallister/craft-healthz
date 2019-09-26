@@ -35,7 +35,7 @@
     "extra": {
         "name": "Healthz",
         "handle": "healthz",
-        "hasCpSettings": true,
+        "hasCpSettings": false,
         "hasCpSection": false,
         "changelogUrl": "https://raw.githubusercontent.com/jasonmccallister/craft-healthz/master/CHANGELOG.md",
         "class": "mccallister\\healthz\\Healthz"

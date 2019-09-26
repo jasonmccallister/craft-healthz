@@ -2,8 +2,6 @@
 
 namespace mccallister\healthz;
 
-use mccallister\healthz\models\Settings;
-
 use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
@@ -27,8 +25,6 @@ use yii\base\Event;
  * @package   Healthz
  * @since     1.0.0
  *
- * @property  Settings $settings
- * @method    Settings getSettings()
  */
 class Healthz extends Plugin
 {
@@ -100,35 +96,6 @@ class Healthz extends Plugin
                 ['name' => $this->name]
             ),
             __METHOD__
-        );
-    }
-
-    // Protected Methods
-    // =========================================================================
-
-    /**
-     * Creates and returns the model used to store the plugin’s settings.
-     *
-     * @return \craft\base\Model|null
-     */
-    protected function createSettingsModel()
-    {
-        return new Settings();
-    }
-
-    /**
-     * Returns the rendered settings HTML, which will be inserted into the content
-     * block on the settings page.
-     *
-     * @return string The rendered settings HTML
-     */
-    protected function settingsHtml(): string
-    {
-        return Craft::$app->view->renderTemplate(
-            'healthz/settings',
-            [
-                'settings' => $this->getSettings()
-            ]
         );
     }
 }

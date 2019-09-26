@@ -1,6 +1,6 @@
 # Healthz
 
-Add Kubernets style health checks to your Craft site, useful when running Craft on Docker or Kubernetes.
+Add Kubernetes style health checks to your Craft site.
 
 ![Healthz Logo](resources/img/plugin-logo.png)
 
