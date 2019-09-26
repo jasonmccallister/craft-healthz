@@ -4,8 +4,6 @@ namespace mccallister\healthz;
 
 use Craft;
 use craft\base\Plugin;
-use craft\services\Plugins;
-use craft\events\PluginEvent;
 use craft\web\UrlManager;
 use craft\events\RegisterUrlRulesEvent;
 
@@ -75,17 +73,6 @@ class Healthz extends Plugin
             function (RegisterUrlRulesEvent $event) {
                 $event->rules['healthz/liveness'] = 'healthz/liveness';
                 $event->rules['healthz/readiness'] = 'healthz/liveness';
-            }
-        );
-
-        // Do something after we're installed
-        Event::on(
-            Plugins::class,
-            Plugins::EVENT_AFTER_INSTALL_PLUGIN,
-            function (PluginEvent $event) {
-                if ($event->plugin === $this) {
-                    // We were just installed
-                }
             }
         );
 
