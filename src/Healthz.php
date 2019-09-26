@@ -1,25 +1,14 @@
 <?php
-/**
- * Health Check plugin for Craft CMS 3.x
- *
- * Add health checks to your Craft website, useful when running inside of Docker
- *
- * @link      https://mccallister.io
- * @copyright Copyright (c) 2019 Jason McCallister
- */
 
-namespace jasonmccallister\healthcheck;
+namespace mccallister\healthz;
 
-use jasonmccallister\healthcheck\models\Settings;
-use jasonmccallister\healthcheck\widgets\HealthCheckWidget as HealthCheckWidgetWidget;
+use mccallister\healthz\models\Settings;
 
 use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
 use craft\events\PluginEvent;
 use craft\web\UrlManager;
-use craft\services\Dashboard;
-use craft\events\RegisterComponentTypesEvent;
 use craft\events\RegisterUrlRulesEvent;
 
 use yii\base\Event;
@@ -35,22 +24,22 @@ use yii\base\Event;
  * https://craftcms.com/docs/plugins/introduction
  *
  * @author    Jason McCallister
- * @package   HealthCheck
+ * @package   Healthz
  * @since     1.0.0
  *
  * @property  Settings $settings
  * @method    Settings getSettings()
  */
-class HealthCheck extends Plugin
+class Healthz extends Plugin
 {
     // Static Properties
     // =========================================================================
 
     /**
      * Static property that is an instance of this plugin class so that it can be accessed via
-     * HealthCheck::$plugin
+     * Healthz::$plugin
      *
-     * @var HealthCheck
+     * @var Healthz
      */
     public static $plugin;
 
@@ -69,7 +58,7 @@ class HealthCheck extends Plugin
 
     /**
      * Set our $plugin static property to this class so that it can be accessed via
-     * HealthCheck::$plugin
+     * Healthz::$plugin
      *
      * Called after the plugin class is instantiated; do any one-time initialization
      * here such as hooks and events.
@@ -88,25 +77,7 @@ class HealthCheck extends Plugin
             UrlManager::class,
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
-                $event->rules['siteActionTrigger1'] = 'health-check/default';
-            }
-        );
-
-        // Register our CP routes
-        Event::on(
-            UrlManager::class,
-            UrlManager::EVENT_REGISTER_CP_URL_RULES,
-            function (RegisterUrlRulesEvent $event) {
-                $event->rules['cpActionTrigger1'] = 'health-check/default/do-something';
-            }
-        );
-
-        // Register our widgets
-        Event::on(
-            Dashboard::class,
-            Dashboard::EVENT_REGISTER_WIDGET_TYPES,
-            function (RegisterComponentTypesEvent $event) {
-                $event->types[] = HealthCheckWidgetWidget::class;
+                $event->rules['healthz/liveness'] = 'healthz/liveness';
             }
         );
 
@@ -121,27 +92,9 @@ class HealthCheck extends Plugin
             }
         );
 
-        /**
-         * Logging in Craft involves using one of the following methods:
-         *
-         * Craft::trace(): record a message to trace how a piece of code runs. This is mainly for development use.
-         * Craft::info(): record a message that conveys some useful information.
-         * Craft::warning(): record a warning message that indicates something unexpected has happened.
-         * Craft::error(): record a fatal error that should be investigated as soon as possible.
-         *
-         * Unless `devMode` is on, only Craft::warning() & Craft::error() will log to `craft/storage/logs/web.log`
-         *
-         * It's recommended that you pass in the magic constant `__METHOD__` as the second parameter, which sets
-         * the category to the method (prefixed with the fully qualified class name) where the constant appears.
-         *
-         * To enable the Yii debug toolbar, go to your user account in the AdminCP and check the
-         * [] Show the debug toolbar on the front end & [] Show the debug toolbar on the Control Panel
-         *
-         * http://www.yiiframework.com/doc-2.0/guide-runtime-logging.html
-         */
         Craft::info(
             Craft::t(
-                'health-check',
+                'healthz',
                 '{name} plugin loaded',
                 ['name' => $this->name]
             ),
@@ -171,7 +124,7 @@ class HealthCheck extends Plugin
     protected function settingsHtml(): string
     {
         return Craft::$app->view->renderTemplate(
-            'health-check/settings',
+            'healthz/settings',
             [
                 'settings' => $this->getSettings()
             ]

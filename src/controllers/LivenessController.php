@@ -8,11 +8,8 @@
  * @copyright Copyright (c) 2019 Jason McCallister
  */
 
-namespace jasonmccallister\healthcheck\controllers;
+namespace mccallister\healthz\controllers;
 
-use jasonmccallister\healthcheck\HealthCheck;
-
-use Craft;
 use craft\web\Controller;
 
 /**
@@ -35,7 +32,7 @@ use craft\web\Controller;
  * @package   HealthCheck
  * @since     1.0.0
  */
-class DefaultController extends Controller
+class LivenessController extends Controller
 {
 
     // Protected Properties
@@ -53,27 +50,15 @@ class DefaultController extends Controller
 
     /**
      * Handle a request going to our plugin's index action URL,
-     * e.g.: actions/health-check/default
+     * e.g.: actions/healthz/liveness
      *
      * @return mixed
      */
     public function actionIndex()
     {
-        $result = 'Welcome to the DefaultController actionIndex() method';
-
-        return $result;
-    }
-
-    /**
-     * Handle a request going to our plugin's actionDoSomething URL,
-     * e.g.: actions/health-check/default/do-something
-     *
-     * @return mixed
-     */
-    public function actionDoSomething()
-    {
-        $result = 'Welcome to the DefaultController actionDoSomething() method';
-
-        return $result;
+        // TODO ping the database if the setting is enabled
+        return $this->asJson([
+            'message' => 'ok'
+        ]);
     }
 }

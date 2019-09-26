@@ -8,15 +8,12 @@
  * @copyright Copyright (c) 2019 Jason McCallister
  */
 
-namespace jasonmccallister\healthcheck\models;
+namespace mccallister\healthz\models;
 
-use jasonmccallister\healthcheck\HealthCheck;
-
-use Craft;
 use craft\base\Model;
 
 /**
- * HealthCheck Settings Model
+ * Healthz Settings Model
  *
  * This is a model used to define the plugin's settings.
  *
@@ -26,7 +23,7 @@ use craft\base\Model;
  * https://craftcms.com/docs/plugins/models
  *
  * @author    Jason McCallister
- * @package   HealthCheck
+ * @package   Healthz
  * @since     1.0.0
  */
 class Settings extends Model
@@ -39,7 +36,7 @@ class Settings extends Model
      *
      * @var string
      */
-    public $someAttribute = 'Some Default';
+    public $pingDatabase = 'Some Default';
 
     // Public Methods
     // =========================================================================
@@ -57,8 +54,8 @@ class Settings extends Model
     public function rules()
     {
         return [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
+            ['pingDatabase', 'boolean'],
+            ['pingDatabase', 'default', 'value' => true],
         ];
     }
 }
