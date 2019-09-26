@@ -1,6 +1,6 @@
-# Health Check plugin for Craft CMS 3.x
+# Healthz
 
-Add health checks to your Craft site, useful when running Docker or Kubernetes.
+Add Kubernets style health checks to your Craft site, useful when running Craft on Docker or Kubernetes.
 
 ![Healthz Logo](resources/img/plugin-logo.png)
 
