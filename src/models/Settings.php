@@ -36,7 +36,7 @@ class Settings extends Model
      *
      * @var string
      */
-    public $pingDatabase = 'Some Default';
+    public $pingDatabase = 'Ping Database';
 
     // Public Methods
     // =========================================================================
