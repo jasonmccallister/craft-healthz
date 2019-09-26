@@ -78,6 +78,7 @@ class Healthz extends Plugin
             UrlManager::EVENT_REGISTER_SITE_URL_RULES,
             function (RegisterUrlRulesEvent $event) {
                 $event->rules['healthz/liveness'] = 'healthz/liveness';
+                $event->rules['healthz/readiness'] = 'healthz/liveness';
             }
         );
 
