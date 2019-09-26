@@ -26,12 +26,8 @@ To install the plugin, follow these instructions.
 
 This plugin will provide an endpoint that allows health checks on Docker or Kubernetes workflows. Since Kubernetes is eating the world, it defaults to `healthz/liveness`, which is the default for Kubernetes.
 
-## Configuring Health Check
-
-There is only one setting for the plugin, `pingDatabase` which will use Craft's db connection and ensure its "active".
-
 ## Using Health Check
 
-Setup your Kubernetes and choose the default health check url (e.g. `healthz/liveness`).
+Setup your Kubernetes and choose the default health check url (e.g. `healthz/liveness` or `healthz/readiness`).
 
 Brought to you by [Jason McCallister](https://mccallister.io)
