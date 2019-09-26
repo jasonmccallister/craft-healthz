@@ -2,7 +2,7 @@
 
 Add health checks to your Craft site, useful when running Docker or Kubernetes.
 
-![Plugin Logo](resources/img/plugin-logo.png)
+![Healthz Logo](resources/img/plugin-logo.png)
 
 ## Requirements
 
