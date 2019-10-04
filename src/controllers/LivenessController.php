@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Health Check plugin for Craft CMS 3.x
  *
@@ -57,11 +58,17 @@ class LivenessController extends Controller
      */
     public function actionIndex()
     {
+        $response = Craft::$app->getResponse();
+
+        $response
+            ->getHeaders()
+            ->set('Cache-Control', 'no-cache, no-store, must-revalidate');
+
         if (Craft::$app->db->isActive) {
             return $this->asJson(['message' => 'ok']);
         }
 
-        Craft::$app->getResponse()->setStatusCode(400);
+        $response->setStatusCode(400);
 
         return $this->asErrorJson('could not establish connection to database');
     }
