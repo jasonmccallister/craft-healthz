@@ -2,7 +2,6 @@
     "name": "mccallister/healthz",
     "description": "Add health checks to your Craft website, useful when running inside of Docker",
     "type": "craft-plugin",
-    "version": "1.0.0",
     "keywords": [
         "craft",
         "cms",
