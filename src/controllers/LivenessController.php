@@ -45,7 +45,9 @@ class LivenessController extends Controller
      *         The actions must be in 'kebab-case'
      * @access protected
      */
-    protected $allowAnonymous = ['index'];
+    protected $allowAnonymous = [
+        'index' => self::ALLOW_ANONYMOUS_LIVE | self::ALLOW_ANONYMOUS_OFFLINE
+    ];
 
     // Public Methods
     // =========================================================================
